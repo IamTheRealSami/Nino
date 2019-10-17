@@ -35,6 +35,7 @@ export interface NinoConfig {
     redis: {
         host: string;
         port: number;
+        password: string;
     };
     webhook: {
         id: string;
@@ -107,7 +108,8 @@ export default class NinoClient extends Client {
         this.config   = config;
         this.redis    = new redis({
             port: config.redis['port'],
-            host: config.redis['host']
+            host: config.redis['host'],
+            password: config.redis['password']
         });
         this.punishments = new PunishmentManager(this);
         this.autoModService = new AutomodService(this);
